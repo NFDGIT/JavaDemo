@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,5 +9,6 @@
 </head>
 <body>
   <p>success!!!</p>
+  <h2>name:<s:property value="userModel.name" /></h2>
 </body>
 </html>
