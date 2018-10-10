@@ -10,9 +10,7 @@ public class LoginAction extends ActionSupport {
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub		
 		System.out.println("login success------------------------------------------");
-		
-		
-		
+	
 		
 		try {
 //			System.out.println(userModel.getName());
@@ -37,8 +35,6 @@ public class LoginAction extends ActionSupport {
 	
 		return SUCCESS;
 	}
-	
-
 	
 	public UserModel getUserModel() {
 		return userModel;
