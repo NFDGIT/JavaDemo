@@ -8,6 +8,6 @@
 </head>
 <body>
   <p>hello struts2</p>
-
+   
 </body>
 </html>
