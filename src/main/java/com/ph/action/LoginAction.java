@@ -1,13 +1,9 @@
 package com.ph.action;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.ph.common.mybatis.DBTool;
@@ -15,6 +11,7 @@ import com.ph.mapper.UserMapper;
 import com.ph.model.UserModel;
 
 public class LoginAction extends ActionSupport {
+    private static final long serialVersionUID = 2L;
     public UserModel userModel;
 
 	@Override
@@ -25,7 +22,7 @@ public class LoginAction extends ActionSupport {
 		
 		try {
 //			System.out.println(userModel.getName());
-//			System.out.println(userModel.getName() + "/½ñÄê" + userModel.getAge() + "Ëê" + "/nÊÕÈë£º" + userModel.getIncome());
+//			System.out.println(userModel.getName() + "/ï¿½ï¿½ï¿½ï¿½" + userModel.getAge() + "ï¿½ï¿½" + "/nï¿½ï¿½ï¿½ë£º" + userModel.getIncome());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
