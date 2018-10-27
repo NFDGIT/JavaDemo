@@ -6,11 +6,6 @@
   <name>com.ph.demo</name>
   
   
-  
-  
-  
-  
-    
  <!-- 依赖包    -->
  <dependencies>
    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
@@ -20,6 +15,7 @@
        <version>4.0.1</version>
        <scope>provided</scope>
    </dependency>
+   
    <!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-core -->
    <dependency>
        <groupId>org.apache.struts</groupId>
@@ -29,10 +25,11 @@
    
    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
    <dependency>
-       <groupId>mysql</groupId>
-       <artifactId>mysql-connector-java</artifactId>
-       <version>8.0.12</version>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.47</version>
    </dependency>
+   
    <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
    <dependency>
        <groupId>org.mybatis</groupId>
