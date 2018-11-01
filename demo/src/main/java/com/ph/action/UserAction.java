@@ -102,13 +102,18 @@ public class UserAction extends ActionSupport {
     public String selectAllUser() {
 		 SqlSession session=DBTool.getSession();
 	     UserMapper mapper=session.getMapper(UserMapper.class);
-	     
+
 	     try {
-		    List<UserModel> user=mapper.selectAllUser();
+		    UserModel userMd = new UserModel();
+		    userMd.setId(userModel.getId());
+	    	 
+	    	 
+		    List<UserModel> user=mapper.selectAllUser(userMd);
 		    JSONArray jsonArray = new JSONArray(user);
+			session.commit();
+		    
+		    
 		    Tool.writerToResponse(jsonArray.toString());
-		
-		    session.commit();
 		 } catch (Exception e) {
 		    e.printStackTrace();
 		    session.rollback();
@@ -163,7 +168,6 @@ public class UserAction extends ActionSupport {
     	return SUCCESS;
 	}
 
-    
     
     
     
