@@ -1,6 +1,6 @@
 package com.ph.model;
 
-public class UserModel {
+public class UserModelAPI {
 	private Integer    id;
 	private String username;
 	private String password;
@@ -8,23 +8,7 @@ public class UserModel {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -43,6 +27,5 @@ public class UserModel {
 	public void setPassword(String password) {
 		this.password = password;
 	}	
-
 
 }

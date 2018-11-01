@@ -7,11 +7,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+
 public class DBTool {
     public static  SqlSessionFactory sqlSessionFactory;
 	static{
 		try {
-			//Ê¹ÓÃMyBatis Ìá¹©µÄResources
+			//Ê¹ï¿½ï¿½MyBatis ï¿½á¹©ï¿½ï¿½Resources
 			Reader reader = Resources.getResourceAsReader("config/mybatis/mybatis-config.xml");
 			
 			// 
@@ -23,10 +24,8 @@ public class DBTool {
 		}
 		
 	}
-
-	// ´´½¨ÄÜÖ´ÐÐ Ó³ÉäÎÄ¼þµÄsql session
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ Ó³ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½sql session
 	public static SqlSession getSession() {
 		return sqlSessionFactory.openSession();
 	}
-	
 }

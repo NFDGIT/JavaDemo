@@ -10,9 +10,13 @@
            <result property="username" column="username" javaType="java.lang.String"></result>
            <result property="password" column="password" javaType="java.lang.String"></result>
       </resultMap>
-     
+      
+      
       <select id="selectAllUser" resultMap="userMap">
          select * from persons
       </select>
+      <insert id="insertUser" parameterType="com.ph.model.UserModel">
+         insert into persons (id,username,password) values(#{id},#{username},#{password})   
+      </insert>
 
 </mapper>

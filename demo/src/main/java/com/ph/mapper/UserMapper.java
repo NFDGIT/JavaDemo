@@ -6,4 +6,5 @@ import com.ph.model.UserModel;
 
 public interface UserMapper {
      public List<UserModel> selectAllUser() throws Exception;
+     public void insertUser(UserModel userModel) throws Exception;
 }
