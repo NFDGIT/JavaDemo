@@ -117,7 +117,49 @@ public class UserAction extends ActionSupport {
 	}
     // 更新信息
     public String updateUser() {
-		
+		SqlSession session = DBTool.getSession();
+		UserMapper mapper = session.getMapper(UserMapper.class);
+
+	    try {
+	    	
+	    	UserModel userMd = new UserModel();
+	    	if (userModel == null) {
+			    JSONObject jsonObject = new JSONObject();
+			    jsonObject.put("code", "201");
+			    jsonObject.put("message", "保存失败,实体类不能为空！");
+			    Tool.writerToResponse(jsonObject.toString());
+	    		
+	    		
+	    		return ERROR;
+			}
+	    	
+	    	
+	    	if (userModel.getId() == null) {
+			    JSONObject jsonObject = new JSONObject();
+			    jsonObject.put("code", "201");
+			    jsonObject.put("message", "修改失败,id 不能为空！");
+			    Tool.writerToResponse(jsonObject.toString());
+	    
+	    		return ERROR;
+			}
+	         
+	        userMd.setId(userModel.getId());
+	        userMd.setUsername(userModel.getUsername());
+	        userMd.setPassword(userModel.getPassword());
+	   
+		    mapper.updateUser(userMd);;
+		    
+		    
+		    JSONObject jsonObject = new JSONObject();
+		    jsonObject.put("code", "200");
+		    jsonObject.put("message", "修改成功");
+		    Tool.writerToResponse(jsonObject.toString());
+	
+		    session.commit();
+		 } catch (Exception e) {
+			    e.printStackTrace();
+			    session.rollback();
+	     }
     	return SUCCESS;
 	}
 

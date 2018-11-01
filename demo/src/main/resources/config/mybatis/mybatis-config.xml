@@ -25,9 +25,11 @@
       </dataSource>
     </environment>
   </environments>
-  <mappers>
   
+  
+  <mappers>
       <mapper resource="com/ph/mapper/UserMapper.xml"/>
-
   </mappers>
+  
+  
 </configuration>

@@ -12,6 +12,9 @@
 	     <action name="insertUser" class="com.ph.action.UserAction" method="regist">
 	       <result>/success.jsp</result>
 	     </action>
+	     <action name="updateUser" class="com.ph.action.UserAction" method="updateUser">
+	       <result>/success.jsp</result>
+	     </action>
 	</package>
 	
 	

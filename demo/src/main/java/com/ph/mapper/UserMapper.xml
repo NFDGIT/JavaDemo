@@ -13,10 +13,21 @@
       
       
       <select id="selectAllUser" resultMap="userMap">
-         select * from persons
+         select * from persons   
+         where 1=1
+         <if test="id != null">id=#{id}</if>    
       </select>
+      
       <insert id="insertUser" parameterType="com.ph.model.UserModel">
          insert into persons (id,username,password) values(#{id},#{username},#{password})   
       </insert>
+      <update id="updateUser" parameterType="com.ph.model.UserModel">
+         update persons 
+         <set>
+            <if test="username != null">username=#{username}</if>
+            <if test="password != null">password=#{password}</if>                                    
+         </set>
+         where id=#{id}
+      </update>
 
 </mapper>
