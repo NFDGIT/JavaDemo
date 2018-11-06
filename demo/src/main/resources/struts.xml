@@ -3,16 +3,19 @@
  "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
 	<package name="default" extends="struts-default">
-	     <action name="login" class="com.ph.action.UserAction" method="login">
+		
+		
+		
+	     <action name="login" class="userAction" method="login">
 	       <result>/success.jsp</result>
 	     </action>
-	     <action name="selectAllUser" class="com.ph.action.UserAction" method="selectAllUser">
+	     <action name="selectAllUser" class="userAction" method="selectAllUser">
 	       <result>/success.jsp</result>
 	     </action>
-	     <action name="insertUser" class="com.ph.action.UserAction" method="regist">
+	     <action name="insertUser" class="userAction" method="regist">
 	       <result>/success.jsp</result>
 	     </action>
-	     <action name="updateUser" class="com.ph.action.UserAction" method="updateUser">
+	     <action name="updateUser" class="userAction" method="updateUser">
 	       <result>/success.jsp</result>
 	     </action>
 	</package>

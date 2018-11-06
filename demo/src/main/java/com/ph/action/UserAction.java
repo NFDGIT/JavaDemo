@@ -5,6 +5,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.ph.common.Tool;
@@ -16,8 +19,7 @@ import com.ph.model.UserModelAPI;
 
 
 public class UserAction extends ActionSupport {
-	public UserModelAPI userModel;
-	
+	public UserModelAPI userModel;	
     /**
 	 * 
 	 */
@@ -26,9 +28,12 @@ public class UserAction extends ActionSupport {
 	
 	// 登录
 	public String login() {
-		
+		AbstractApplicationContext context = new ClassPathXmlApplicationContext("/config/spring/Beans.xml");
+		TestAction testAction = (TestAction) context.getBean("testAction");
+		testAction.printName();
+        
     	return SUCCESS;
-	}
+	} 
 	
 	// 注册
     public String regist() {

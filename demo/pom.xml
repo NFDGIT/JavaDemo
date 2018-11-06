@@ -23,6 +23,41 @@
        <version>2.5</version>
    </dependency>
    
+   <!--  spring  组件  -->
+   <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+   <dependency>
+       <groupId>org.springframework</groupId>
+       <artifactId>spring-core</artifactId>
+       <version>3.0.7.RELEASE</version>
+   </dependency>
+   <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+   <dependency>
+       <groupId>org.springframework</groupId>
+       <artifactId>spring-context</artifactId>
+       <version>3.0.7.RELEASE</version>
+    </dependency>
+   <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+   <dependency>
+       <groupId>org.springframework</groupId>
+       <artifactId>spring-beans</artifactId>
+       <version>3.0.7.RELEASE</version>
+   </dependency>
+   <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+   <dependency>
+       <groupId>org.springframework</groupId>
+       <artifactId>spring-webmvc</artifactId>
+       <version>3.0.7.RELEASE</version>
+   </dependency>
+   
+    <!-- struts2 和 spring 的整合 -->
+   <!-- https://mvnrepository.com/artifact/org.apache.struts/struts2-spring-plugin -->
+   <dependency>
+       <groupId>org.apache.struts</groupId>
+       <artifactId>struts2-spring-plugin</artifactId>
+       <version>2.5.18</version>
+   </dependency>
+   
+   <!--  mysql 组件 -->
    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
    <dependency>
       <groupId>mysql</groupId>
