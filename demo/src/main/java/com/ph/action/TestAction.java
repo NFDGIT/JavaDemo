@@ -3,11 +3,13 @@ package com.ph.action;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
-
+@Controller
+@RequestMapping("/main")
 public class TestAction  implements InitializingBean{
 
 	@Autowired
@@ -41,7 +43,7 @@ public class TestAction  implements InitializingBean{
 		System.out.println("destroy");
 	}
 	
-	@RequestMapping("test/hello")
+	@RequestMapping("/hello")
 	public String tes() {
 		return "{‘code’:‘100’,‘Message’:‘成功’}";
 	}

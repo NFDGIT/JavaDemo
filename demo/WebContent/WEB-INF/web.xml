@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>demo</display-name>
+  
+   <!-- ********* Spring配置 *****************-->
    <context-param>
     <description>Spring配置文件</description>
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:config/spring/Beans.xml</param-value>
   </context-param>
-  
+
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-    <!-- *********Spring的字符编码过滤器*****************-->
+  <!-- ********* END  Spring配置 *****************-->
+  
+
+   <!-- *********Spring的字符编码过滤器*****************-->
     <filter>
         <filter-name>encoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -23,22 +28,60 @@
             <param-value>true</param-value>  
         </init-param> 
     </filter>
+    <!-- ********* END  Spring的字符编码过滤器*****************-->
+    
+
+    <!-- ********* 编码过滤 *****************-->    
     <filter-mapping>
         <filter-name>encoding</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <!--
+   <filter-mapping>  
+        <filter-name>encodingFilter</filter-name>  
+        <url-pattern>*.mvc</url-pattern>  
+    </filter-mapping>  
+    <filter-mapping>  
+        <filter-name>encodingFilter</filter-name>  
+        <url-pattern>*.do</url-pattern>  
+    </filter-mapping>  
+    <filter-mapping>  
+        <filter-name>encodingFilter</filter-name>  
+        <url-pattern>*.action</url-pattern>  
+    </filter-mapping>  
+    <filter-mapping>  
+        <filter-name>encodingFilter</filter-name>  
+        <url-pattern>*.jsp</url-pattern>  
+    </filter-mapping> -->
+     <!-- ********* END 编码过滤 *****************-->
 
-  
-  <!-- struts 配置 -->
-  <filter>
-     <filter-name>struts2</filter-name>
-     <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
-  </filter>
-  <filter-mapping>
-     <filter-name>struts2</filter-name>
-     <url-pattern>/*</url-pattern>
-  </filter-mapping>
-  
+    <!-- Struts2配置 -->  
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>*.action</url-pattern>
+    </filter-mapping>
+    <!-- End Struts2配置 -->   
+    	
+    <!-- SpringMVC配置 -->   
+    <servlet>  
+        <servlet-name>springmvc</servlet-name>  
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
+        <init-param>  
+            <param-name>contextConfigLocation</param-name>  
+            <param-value>/WEB-INF/Demo-servlet.xml</param-value>  
+        </init-param>  
+        <load-on-startup>1</load-on-startup>  
+    </servlet>  
+    <servlet-mapping>  
+        <servlet-name>springmvc</servlet-name>  
+        <url-pattern>*.mvc</url-pattern>  
+    </servlet-mapping>  
+   <!--  End SpringMVC配置 -->      	
+    	
     
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
