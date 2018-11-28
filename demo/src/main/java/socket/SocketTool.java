@@ -3,6 +3,7 @@ package socket;
 import java.io.*;
 import java.net.*;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class SocketTool {
     private ServerSocket serverSocket;
@@ -28,7 +29,8 @@ public class SocketTool {
     	switchOfServer = true;
     	while(switchOfServer)
     	{
-             acceptMsg();
+            String msg = acceptMsg();
+         
     	}
     }
     
@@ -43,38 +45,62 @@ public class SocketTool {
      * @throws IOException 
      */
     public void sendMsg(String sendId,String receiveId ,String msg) throws IOException {
-    	
-    	if (receiveId == null) { // 如果  id 为空
-			return;
+    	PrintWriter printWriter;
+    	if (receiveId == null) { // 如果 id 为空   群发
+    		
+    		
+    		  //每当客户端连接上,就向相应的客户端进行回应
+            Iterator<HashMap.Entry<String, Socket>> entries = socketList.entrySet().iterator(); 
+            while (entries.hasNext()){
+                HashMap.Entry<String, Socket> entry = entries.next(); 
+                System.out.println(entry.getKey());
+                if (!String.valueOf(entry.getKey()).equals("")) {
+                    System.out.println(entry.getValue());
+                    System.out.println("-------------");
+                    Socket  socket = entry.getValue();
+                    if (socket!=null) {
+                        try {
+                        	printWriter = new PrintWriter(socket.getOutputStream());  //回复client的ID
+                        	printWriter.println(msg);
+                        	printWriter.flush();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+    		return;
 		}
+   
 		if (!socketList.keySet().contains(receiveId)) { // 如果  id 不在列表中
 			return;
 		}
 		Socket client = socketList.get(receiveId);
-		DataOutputStream out = new DataOutputStream(client.getOutputStream());
-    	out.writeUTF("用户"+sendId+"发来一条消息");
+		DataOutputStream dataOutputStream = new DataOutputStream(client.getOutputStream());
+		dataOutputStream.writeUTF("用户"+sendId+"发来一条消息");
 	
 	}
     /**
      * 接收消息
      */
-    public void acceptMsg() {
+    public String acceptMsg() {
 	    try {
 	    	System.out.println("等待远程连接，端口号为："+serverSocket.getLocalPort()+"....");
 	    	
-	    	Socket server = serverSocket.accept();
+	    	Socket socket = serverSocket.accept();
 	    	
-	    	System.out.println("远程主机地址：" + server.getRemoteSocketAddress());
+	    	System.out.println("远程主机地址：" + socket.getRemoteSocketAddress());
 	    	
-	    	System.out.println("ip 地址："+server.getLocalAddress()+ "端口号"+server.getLocalPort());
+	    	System.out.println("getLocalSocketAddress 地址："+socket.getLocalSocketAddress()+ "getLocalPort"+socket.getLocalPort());
+	    	System.out.println("getRemoteSocketAddress 地址："+socket.getRemoteSocketAddress()+ "getPort"+socket.getPort());
 	    	
-//	    	DataInputStream in = new DataInputStream(server.getInputStream());
-//	    	System.out.println(in.readUTF());
-//	    	
-//	    	DataOutputStream out = new DataOutputStream(server.getOutputStream());
-//	    	out.writeUTF("谢谢连接我："+server.getLocalAddress() + "\nGoodbye!");
-//	    	server.close();
-	    
+	    	socketList.put(socket.getRemoteSocketAddress()+":"+socket.getPort(), socket);
+	    	
+	    	DataInputStream in = new DataInputStream(socket.getInputStream());
+	    	System.out.println(in.readUTF());
+	       
+	    	
+	    	return in.readUTF();
 		} catch (SocketTimeoutException s) {
 			// TODO: handle exception
 			System.out.println("Socket time out ");
@@ -82,6 +108,7 @@ public class SocketTool {
 	    {
 			e.printStackTrace();
 	    }
+	    return "";
 	}
     
     
