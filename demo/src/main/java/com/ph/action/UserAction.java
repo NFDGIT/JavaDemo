@@ -1,5 +1,6 @@
 package com.ph.action;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,6 +17,8 @@ import com.ph.mapper.UserMapper;
 import com.ph.model.UserModel;
 import com.ph.model.UserModelAPI;
 
+import socket.SocketTool;
+
 
 
 public class UserAction extends ActionSupport {
@@ -24,8 +27,13 @@ public class UserAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
+	// 启动 socket 
+	public String launchSocket() throws IOException {
+		SocketTool socketTool = new SocketTool(9999);
+		socketTool.run();
+     
+		return SUCCESS;
+	}
 	// 登录
 	public String login() {
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext("/config/spring/Beans.xml");
@@ -34,6 +42,8 @@ public class UserAction extends ActionSupport {
         
     	return SUCCESS;
 	} 
+
+	
 	
 	// 注册
     public String regist() {

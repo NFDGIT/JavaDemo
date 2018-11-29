@@ -5,7 +5,9 @@
 	<package name="default" extends="struts-default">
 		
 		
-		
+	     <action name="launchSocket" class="userAction" method="launchSocket">
+	       <result>/success.jsp</result>
+	     </action>		
 	     <action name="login" class="userAction" method="login">
 	       <result>/success.jsp</result>
 	     </action>

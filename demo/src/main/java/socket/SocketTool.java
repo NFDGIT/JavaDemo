@@ -10,7 +10,7 @@ public class SocketTool {
     private Boolean switchOfServer;
     private static HashMap<String,Socket> socketList =  new HashMap<String, Socket>();
     private static BufferedReader bufferedReader;
-    
+    private PrintWriter out;
     
     
     
@@ -30,7 +30,7 @@ public class SocketTool {
     	while(switchOfServer)
     	{
             String msg = acceptMsg();
-         
+            sendMsg("1", "1", msg);
     	}
     }
     
@@ -88,19 +88,23 @@ public class SocketTool {
 	    	System.out.println("等待远程连接，端口号为："+serverSocket.getLocalPort()+"....");
 	    	
 	    	Socket socket = serverSocket.accept();
-	    	
-	    	System.out.println("远程主机地址：" + socket.getRemoteSocketAddress());
-	    	
+	   
 	    	System.out.println("getLocalSocketAddress 地址："+socket.getLocalSocketAddress()+ "getLocalPort"+socket.getLocalPort());
 	    	System.out.println("getRemoteSocketAddress 地址："+socket.getRemoteSocketAddress()+ "getPort"+socket.getPort());
 	    	
 	    	socketList.put(socket.getRemoteSocketAddress()+":"+socket.getPort(), socket);
 	    	
-	    	DataInputStream in = new DataInputStream(socket.getInputStream());
-	    	System.out.println(in.readUTF());
-	       
+	    
+	    	  // 从服务端程序接收数据
+	        InputStream ips = socket.getInputStream();
+	        InputStreamReader ipsr = new InputStreamReader(ips);
+	        BufferedReader br = new BufferedReader(ipsr);
+	        String s = "";    
+	        while((s = br.readLine()) != null)
+//	          System.out.println("/n hello::::--- " +br.readLine()); 
+	        	s = s + br.readLine();
+	    	return s;
 	    	
-	    	return in.readUTF();
 		} catch (SocketTimeoutException s) {
 			// TODO: handle exception
 			System.out.println("Socket time out ");
